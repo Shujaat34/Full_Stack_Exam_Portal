@@ -17,7 +17,7 @@
                         <p> Q{{i+1}}) <span [innerHTML]="ques.content"></span> </p>
                         <mat-divider></mat-divider>
 
-                        <div class="row mt20">
+                        <!-- <div class="row mt20">
                             <div class="col-md-6">
                                 <input type="radio" [value]="ques.option1" [name]="i"/> {{ques.option1}}
                             </div>
@@ -32,7 +32,27 @@
                             <div class="col-md-6">
                                 <input type="radio" [value]="ques.option4" [name]="i"/> {{ques.option4}}
                             </div>
-                        </div>
+                        </div> -->
+
+                        <!-- Material Radio Buttons -->
+                        <mat-radio-group aria-label="Select an option" color="primary">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <mat-radio-button [value]="ques.option1" >{{ques.option1}}</mat-radio-button>
+                                </div>
+                                <div class="col-md-6">
+                                    <mat-radio-button [value]="ques.option2" >{{ques.option2}}</mat-radio-button>
+                                </div>
+                            </div>
+                            <div class="row mt10">
+                                <div class="col-md-6">
+                                    <mat-radio-button [value]="ques.option3" >{{ques.option3}}</mat-radio-button>
+                                </div>
+                                <div class="col-md-6">
+                                    <mat-radio-button [value]="ques.option4" >{{ques.option4}}</mat-radio-button>
+                                </div>
+                            </div>
+                        </mat-radio-group>
                     </mat-card-content>
                 </mat-card>
 

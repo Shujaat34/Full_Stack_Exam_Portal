@@ -40,6 +40,7 @@ import { SidebarComponent as UserSideBar } from './pages/user/sidebar/sidebar.co
 import { LoadQuizComponent } from './pages/user/load-quiz/load-quiz.component';
 import { InstructionsComponent } from './pages/user/instructions/instructions.component';
 import { StartQuizComponent } from './pages/user/start-quiz/start-quiz.component';
+import {MatRadioModule} from '@angular/material/radio';
 
 @NgModule({
   declarations: [
@@ -84,7 +85,7 @@ import { StartQuizComponent } from './pages/user/start-quiz/start-quiz.component
     MatSlideToggleModule,
     MatSelectModule,
     CKEditorModule,
-    
+    MatRadioModule,
   ],
   providers: [AuthInterceptorProviders],
   bootstrap: [AppComponent]

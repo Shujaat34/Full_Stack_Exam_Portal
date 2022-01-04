@@ -4,6 +4,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Question } from 'src/app/question';
 import { QuestionService } from 'src/app/services/question.service';
+import {MatRadioModule} from '@angular/material/radio';
 
 @Component({
   selector: 'app-start-quiz',
