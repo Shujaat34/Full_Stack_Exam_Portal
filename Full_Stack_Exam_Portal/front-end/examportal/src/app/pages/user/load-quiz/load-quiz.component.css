@@ -1,0 +1,16 @@
+.example-card {
+    max-width: 400px;
+  }
+  
+  .python-header-image {
+    background-image: url('./../../../../assets/python.png');
+    background-size: cover;
+  }
+
+  .truncate{
+      display: block;
+      white-space: nowrap;
+      width: 100%;
+      overflow: hidden;
+      text-overflow: ellipsis;
+  }

@@ -1,0 +1,49 @@
+<div class="bootstrap-wrapper">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-2">
+                <!-- instructions -->
+                <h3>Instructions</h3>
+            </div>
+            <div class="col-md-8 mt20">
+                <!-- questions -->
+                <ng-container *ngIf="questions">
+                    <h1>
+                        Quiz {{questions[0].quiz.title}}
+                    </h1>
+                </ng-container>
+                <mat-card *ngFor="let ques of questions; let i = index" class="mt20">
+                    <mat-card-content>
+                        <p> Q{{i+1}}) <span [innerHTML]="ques.content"></span> </p>
+                        <mat-divider></mat-divider>
+
+                        <div class="row mt20">
+                            <div class="col-md-6">
+                                <input type="radio" [value]="ques.option1" [name]="i"/> {{ques.option1}}
+                            </div>
+                            <div class="col-md-6">
+                                <input type="radio" [value]="ques.option2" [name]="i"/> {{ques.option2}}
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <input type="radio" [value]="ques.option3" [name]="i"/> {{ques.option3}}
+                            </div>
+                            <div class="col-md-6">
+                                <input type="radio" [value]="ques.option4" [name]="i"/> {{ques.option4}}
+                            </div>
+                        </div>
+                    </mat-card-content>
+                </mat-card>
+
+                <div class="container text-center mt10">
+                    <button mat-raised-button color="primary">Submit Quiz</button>
+                </div>
+
+            </div>
+            <div class="col-md-2 ">
+                <!-- progress -->
+            </div>
+        </div>
+    </div>
+</div>

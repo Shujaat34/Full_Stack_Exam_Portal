@@ -1,0 +1,57 @@
+<div class="bootstrap-wrapper">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <mat-card class="mt20">
+                    <mat-card-header>
+                        <mat-card-title>
+                            Read the Instructions Carefully, before starting the quiz.
+                        </mat-card-title>
+                        <mat-card-subtitle>
+                            one step more to go.
+                        </mat-card-subtitle>
+                    </mat-card-header>
+                    <mat-card-content class="ml20">
+                        <h2>{{quiz.title}}</h2>
+                        <p>{{quiz.description}}</p>
+                        <mat-divider></mat-divider>
+                        <br>
+                        <h1>Important Instructions</h1>
+                        <ul>
+                            <!-- Let the Time of each questions be 2 mintues -->
+                            <li>This Quiz is only for practice purpose.</li>
+                            <li>Once you started the Quiz you can not go back.</li>
+                            <li>You have to complete the Quiz within <b>{{+quiz.numberOfQuestions*2}} Minutes.</b></li>
+                            <li>There is no Negative Marking for Wrong question.</li>
+                            <li>You must divide the time for each question to complete the Quiz.</li>
+                            <li>You can attempt the Quiz any number of times.</li>
+                            <li>There are <b>{{quiz.numberOfQuestions}} </b>Question in this Quiz.</li>
+                            <li>Each Question carries <b>{{+quiz.maxMarks/+quiz.numberOfQuestions}} </b>Marks.</li>
+                            <li>All Questions are <b>MCQs</b>Type.</li>
+
+
+                        </ul>
+                    </mat-card-content>
+
+                    <mat-divider></mat-divider>
+
+                    <h1>Attempting Quiz</h1>
+                    <ul>
+                        <li>Click <b>Start Quiz button </b>to start the Quiz</li>
+                        <li>You can not resume the quiz once distrubed by any reason</li>
+                        <li>The time will start as soon as you start the quiz</li>
+                        <li>Scroll Down to move to the next question</li>
+                        <li>Click on Submit Test Button to after completing the Quiz</li>
+                        <li>Report of the test is automatically generated in pdf format, once you finish the quiz.</li>
+                    </ul>
+
+                    <mat-card-actions class="text-center">
+                        <button mat-raised-button color="primary" (click)="startQuiz()">Start Quiz</button>
+
+                    </mat-card-actions>
+                </mat-card>
+               
+            </div>
+        </div>
+    </div>
+</div>
