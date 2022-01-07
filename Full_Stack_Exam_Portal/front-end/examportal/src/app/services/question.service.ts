@@ -35,4 +35,10 @@ export class QuestionService {
   public deleteQuestion(questionId : number) : Observable<void>{
     return this.http.delete<void>(`${this.baseUrl}/question/${questionId}`);
   }
+
+  public evaluateQuestionsOfQuiz(questions: Question[]): Observable<Object> {
+    return this.http.post<Object>(`${this.baseUrl}/question/eval-quiz`,questions);
+  }
+
+  
 }

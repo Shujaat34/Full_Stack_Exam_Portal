@@ -22,7 +22,7 @@ export class StartQuizComponent implements OnInit {
   marksGot = 0;
   correctAnswers = 0;
   attempted = 0;
-  perQuestionMarks =0; 
+ 
 
   timer : any ;
 
@@ -38,17 +38,16 @@ export class StartQuizComponent implements OnInit {
       (resp : Question[])=>{
         this.questions = resp;
 
+        this.questions.forEach((q)=>{
+          q.givenAnswer = '';
+          q.answer = '';
+        });
+
         //Each Question will have 2 minutes.
         this.timer = this.questions.length * 2 * 60;
 
         console.log(this.questions);
-
-        this.questions.forEach((q)=>{
-          q.givenAnswer = '';
-        });
-
         this.startTimer();
-
 
       },(error : HttpErrorResponse)=>{
         console.log('Error Loading Questions of Quiz '+error.message);
@@ -96,17 +95,30 @@ export class StartQuizComponent implements OnInit {
 
   evalQuiz() {
     this.isSubmit = true;
-          this.questions.forEach((q)=>{
-            if(q.givenAnswer == q.answer){
-              this.correctAnswers++;
-              this.perQuestionMarks = +this.questions[0].quiz.maxMarks/this.questions.length;
-            }
-            if(q.givenAnswer.trim() != ''){
-              this.attempted++;
-            }
-          });
-          //makrs after two decimal points.
-          this.marksGot = +(this.perQuestionMarks * this.correctAnswers).toFixed(2);
+
+    this.questionService.evaluateQuestionsOfQuiz(this.questions).subscribe(
+      (obj : Object)=>{
+
+        this.correctAnswers = Object(obj)["correctAnswers"];
+        this.attempted = Object(obj)["attempted"];
+        this.marksGot = Object(obj)["marksGot"];
+        
+      },(error: HttpErrorResponse)=>{
+        console.log(error.message);
+      }
+    );
+
+    // this.questions.forEach((q)=>{
+    //   if(q.givenAnswer == q.answer){
+    //     this.correctAnswers++;
+    //     this.perQuestionMarks = +this.questions[0].quiz.maxMarks/this.questions.length;
+    //   }
+    //   if(q.givenAnswer.trim() != ''){
+    //     this.attempted++;
+    //   }
+    // });
+    // //makrs after two decimal points.
+    // this.marksGot = +(this.perQuestionMarks * this.correctAnswers).toFixed(2);
   }
 
 } 

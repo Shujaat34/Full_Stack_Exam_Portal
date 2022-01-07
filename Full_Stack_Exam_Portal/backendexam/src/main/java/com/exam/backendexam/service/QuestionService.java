@@ -4,6 +4,7 @@ import com.exam.backendexam.model.Question;
 import com.exam.backendexam.model.Quiz;
 
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 
 public interface QuestionService {
@@ -20,4 +21,6 @@ public interface QuestionService {
 
 
     void deleteQuestionById(Long questionId);
+
+    Map<String, Object> evaluateQuestionOfQuiz(List<Question> questions);
 }
