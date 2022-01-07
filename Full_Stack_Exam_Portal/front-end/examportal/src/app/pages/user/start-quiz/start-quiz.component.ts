@@ -24,6 +24,8 @@ export class StartQuizComponent implements OnInit {
   attempted = 0;
   perQuestionMarks =0; 
 
+  timer : any ;
+
   isSubmit = false;
 
   ngOnInit(): void {
@@ -35,11 +37,19 @@ export class StartQuizComponent implements OnInit {
     this.questionService.getQuestionsOfQuizUser(this.quizId).subscribe(
       (resp : Question[])=>{
         this.questions = resp;
+
+        //Each Question will have 2 minutes.
+        this.timer = this.questions.length * 2 * 60;
+
         console.log(this.questions);
 
         this.questions.forEach((q)=>{
           q.givenAnswer = '';
         });
+
+        this.startTimer();
+
+
       },(error : HttpErrorResponse)=>{
         console.log('Error Loading Questions of Quiz '+error.message);
       }
@@ -54,32 +64,7 @@ export class StartQuizComponent implements OnInit {
       icon:'info'
     }).then((result)=>{
       if(result.isConfirmed){
-        // console.log('Got These')
-        // console.log(this.questions);
-        // this.router.navigate(['/start-quiz/'+this.quiz.id]);
-
-        this.isSubmit = true;
-        
-        this.questions.forEach((q)=>{
-          if(q.givenAnswer == q.answer){
-            this.correctAnswers++;
-            this.perQuestionMarks = +this.questions[0].quiz.maxMarks/this.questions.length;
-          }
-          if(q.givenAnswer.trim() != ''){
-            this.attempted++;
-          }
-        });
-
-        //makrs after two decimal points.
-        this.marksGot = +(this.perQuestionMarks * this.correctAnswers).toFixed(2);
-
-        
-     
-
-        console.log('Got Marks '+this.marksGot);
-        console.log('Attempted '+this.attempted);
-        console.log('Correct Answers '+this.correctAnswers);
-
+        this.evalQuiz();
       }
     });
   }
@@ -91,4 +76,39 @@ export class StartQuizComponent implements OnInit {
       });
   }
 
-}
+  startTimer(){
+    //in each second this will be called back
+    let t = window.setInterval(()=>{
+      if(this.timer<=0){
+        this.evalQuiz();
+        clearInterval(t);
+      }else{
+        this.timer--;
+      }
+    },1000);
+  }
+
+  getFormattedTime(){
+    let minute = Math.floor(this.timer/60);
+    let seconds = this.timer -minute*60;
+    return `${minute} min : ${seconds} sec`
+  }
+
+  evalQuiz() {
+    this.isSubmit = true;
+          this.questions.forEach((q)=>{
+            if(q.givenAnswer == q.answer){
+              this.correctAnswers++;
+              this.perQuestionMarks = +this.questions[0].quiz.maxMarks/this.questions.length;
+            }
+            if(q.givenAnswer.trim() != ''){
+              this.attempted++;
+            }
+          });
+          //makrs after two decimal points.
+          this.marksGot = +(this.perQuestionMarks * this.correctAnswers).toFixed(2);
+  }
+
+} 
+
+

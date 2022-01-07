@@ -60,8 +60,18 @@
                 </div>
 
             </div>
-            <div class="col-md-2 ">
+            <div class="col-md-2 " style="margin-top: 70px;">
                 <!-- progress -->
+                <mat-card>
+                    <mat-card-header>
+                        <mat-card-title>Progress</mat-card-title>
+                        <mat-card-subtitle>Quiz will be automatically submitted when timer reaches <b>0:0</b></mat-card-subtitle>
+                    </mat-card-header>
+                    <mat-card-content>
+                        <h1 class="text-center">{{getFormattedTime()}}</h1>
+                        <mat-spinner [value]="(timer/(questions.length * 2 * 60))*100" mode="determinate" style="margin:auto"></mat-spinner>
+                    </mat-card-content>
+                </mat-card>
             </div>
         </div>
     </div>
