@@ -40,7 +40,6 @@ export class StartQuizComponent implements OnInit {
 
         this.questions.forEach((q)=>{
           q.givenAnswer = '';
-          q.answer = '';
         });
 
         //Each Question will have 2 minutes.
