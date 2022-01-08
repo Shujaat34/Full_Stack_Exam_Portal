@@ -78,6 +78,7 @@ public class QuestionServiceImpl implements QuestionService {
         Integer correctAnswers = 0;
         Integer attempted = 0;
         Double perQuestionMarks = 0.0;
+        Boolean passQuiz = false;
 
         for (Question q : questions) {
             Question realQuestion = questionRepository.findById(q.getId()).get();
@@ -96,11 +97,19 @@ public class QuestionServiceImpl implements QuestionService {
             marksGot = perQuestionMarks * correctAnswers;
             //Two Digits After Decimal
             marksGot = Math.floor(marksGot * 100) / 100;
+
+            //user gets 50% marks he is pass
+            if(correctAnswers >= questions.size()/2){
+                passQuiz = true;
+            }
         }
+
 
         map.put("marksGot", marksGot);
         map.put("attempted", attempted);
         map.put("correctAnswers", correctAnswers);
+        map.put("perQuestionMarks", perQuestionMarks);
+        map.put("passQuiz",passQuiz);
 
         return map;
     }
