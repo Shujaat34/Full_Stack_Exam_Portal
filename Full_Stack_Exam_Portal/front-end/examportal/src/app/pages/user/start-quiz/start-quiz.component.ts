@@ -3,7 +3,9 @@ import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Question } from 'src/app/question';
+import { LoginService } from 'src/app/services/login.service';
 import { QuestionService } from 'src/app/services/question.service';
+import { User } from 'src/app/user';
 import Swal from 'sweetalert2';
 
 @Component({
@@ -14,24 +16,35 @@ import Swal from 'sweetalert2';
 export class StartQuizComponent implements OnInit {
 
   constructor(private locationSt : LocationStrategy,private route : ActivatedRoute,
-    private questionService : QuestionService) { }
+    private questionService : QuestionService, private loginService : LoginService,) { }
   quizId : number = 0;
-
   questions : Question[]= [new Question()];
 
   marksGot = 0;
   correctAnswers = 0;
   attempted = 0;
+  perQuestionMarks = 0;
+  passQuiz = false;
  
 
   timer : any ;
-
   isSubmit = false;
+
+  user = new User();
 
   ngOnInit(): void {
     this.preventBackButton();
     this.quizId = this.route.snapshot.params.quizId;
     this.loadQuestions();
+
+    this.loginService.getCurrentUser().subscribe(
+      (resp: User) => {
+        this.user = resp;
+      },
+      (error: HttpErrorResponse) => {
+        console.log('something went wrong ' + error.message);
+      }
+    );
   }
   loadQuestions() {
     this.questionService.getQuestionsOfQuizUser(this.quizId).subscribe(
@@ -101,6 +114,8 @@ export class StartQuizComponent implements OnInit {
         this.correctAnswers = Object(obj)["correctAnswers"];
         this.attempted = Object(obj)["attempted"];
         this.marksGot = Object(obj)["marksGot"];
+        this.perQuestionMarks = Object(obj)["perQuestionMarks"];
+        this.passQuiz = Object(obj)["passQuiz"];
         
       },(error: HttpErrorResponse)=>{
         console.log(error.message);
@@ -119,6 +134,10 @@ export class StartQuizComponent implements OnInit {
     // //makrs after two decimal points.
     // this.marksGot = +(this.perQuestionMarks * this.correctAnswers).toFixed(2);
   }
+  printPage(){
+    window.print();
+  }
+  
 
 } 
 
