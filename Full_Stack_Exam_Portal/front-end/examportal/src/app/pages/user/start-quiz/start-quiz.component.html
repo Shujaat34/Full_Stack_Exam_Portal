@@ -3,7 +3,22 @@
         <div class="row" *ngIf="questions.length != 0">
             <div class="col-md-2">
                 <!-- instructions -->
-                <h3>Instructions</h3>
+               
+               <mat-card style="margin-top: 70px;">
+                <mat-card-header>
+                    <mat-card-title>
+                        Instructions
+                    </mat-card-title>
+                </mat-card-header>
+                   <mat-card-content>
+                    <ul style="padding: 5px;" class="ml10 li-spacing">
+                        <li><b>Do not Refresh the Page otherwise you will get new questions in this quiz.</b></li>
+                        <li><b>Do not Switch the tabs</b></li>
+                        <li><b>Do not minimize the window</b></li>
+                        <li><b>Please use your Time wisely.</b></li>
+                    </ul>
+                   </mat-card-content>
+               </mat-card>
             </div>
             <div class="col-md-8 mt20">
                 <!-- questions -->
