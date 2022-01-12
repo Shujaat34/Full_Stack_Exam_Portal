@@ -13,7 +13,7 @@ export class LoginService {
 
   @HostListener("window:onbeforeunload",["$event"])
   clearLocalStorage(event : any){
-      this.logout();
+    this.logout();
   }
 
   public loginStatus = new Subject<boolean>();

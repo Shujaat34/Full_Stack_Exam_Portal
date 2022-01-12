@@ -1,8 +1,6 @@
-import { ThrowStmt } from '@angular/compiler';
 import { Component, OnInit } from '@angular/core';
 import { LoginData } from 'src/app/login-data';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { UserService } from 'src/app/services/user.service';
 import { LoginService } from 'src/app/services/login.service';
 import { HttpErrorResponse } from '@angular/common/http';
 import { Router } from '@angular/router';
@@ -21,6 +19,7 @@ export class LoginComponent implements OnInit {
 
   ngOnInit(): void {}
 
+
   onLogin() {
     if (this.loginData.username == null || this.loginData.username == '') {
       this.snackBar.open('Username is required ', '', {
@@ -33,6 +32,11 @@ export class LoginComponent implements OnInit {
         duration: 3000,
       });
       return;
+    }
+
+    //If window is closes it will detect the Closing of Window or tab.
+    window.onbeforeunload = ()=> {
+      this.loginService.logout();
     }
 
     //Hit Service to Generate-Token
