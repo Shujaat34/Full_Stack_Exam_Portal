@@ -1,6 +1,6 @@
 # Full_Stack_Exam_Portal
 
-###For Angular You Need to Follow These Steps.
+### For Angular You Need to Follow These Steps.
 
 1. Install Node Js From [ https://nodejs.org/en/ ]
    Note: To check the Node is Intalled. open Cmd and type node -v.
