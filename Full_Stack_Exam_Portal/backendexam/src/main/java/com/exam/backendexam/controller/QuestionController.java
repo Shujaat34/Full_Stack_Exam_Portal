@@ -7,7 +7,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @CrossOrigin("*")
 @RestController
@@ -47,4 +49,10 @@ public class QuestionController {
         questionService.deleteQuestionById(questionId);
         return ResponseEntity.ok().build();
     }
+
+    @PostMapping("/eval-quiz")
+    public ResponseEntity<Map<String,Object>> evaluateQuestionOfQuiz(@RequestBody List<Question> questions) {
+        return ResponseEntity.ok(questionService.evaluateQuestionOfQuiz(questions));
+    }
+
 }

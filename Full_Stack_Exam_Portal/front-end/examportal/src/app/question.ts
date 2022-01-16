@@ -11,6 +11,7 @@ export class Question {
   answer: string = '';
   quiz: Quiz = new Quiz();
   qName : string = '';
+  givenAnswer :string =  '';
 
 
 }

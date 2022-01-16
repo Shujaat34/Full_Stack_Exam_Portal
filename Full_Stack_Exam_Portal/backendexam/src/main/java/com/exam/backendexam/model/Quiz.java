@@ -1,5 +1,6 @@
 package com.exam.backendexam.model;
 
+import com.exam.backendexam.bean.UploadFileResponse;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -32,4 +33,9 @@ public class Quiz {
     @OneToMany(mappedBy = "quiz", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JsonIgnore
     private Set<Question> questions = new HashSet<>();
+
+    private String quizLogo;
+
+    @Transient
+    private UploadFileResponse uploadFileResponse;
 }

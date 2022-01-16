@@ -1,5 +1,6 @@
 package com.exam.backendexam.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -26,8 +27,11 @@ public class Question {
     private String option3;
     private String option4;
 
+
     private String answer;
 
+    @Transient
+    private String givenAnswer;
 
     @ManyToOne
     private Quiz quiz;

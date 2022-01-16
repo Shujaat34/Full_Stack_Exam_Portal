@@ -8,4 +8,5 @@ export class Quiz {
   numberOfQuestions: string= '';
   isActive: boolean= false;
   category : Category = new Category();
+  quizLogo : string = '';
 }

@@ -7,6 +7,7 @@ import io.swagger.annotations.Api;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.Set;
 
@@ -20,6 +21,11 @@ public class QuizController {
 
     @Autowired
     private CategoryService categoryService;
+
+    @PostMapping("/fileUpload")
+    public ResponseEntity<Quiz> addQuizWithImage(@RequestBody Quiz quiz,@RequestParam("file") MultipartFile file) {
+        return ResponseEntity.ok(quizService.addQuiz(quiz,file));
+    }
 
     @PostMapping("/")
     public ResponseEntity<Quiz> addQuiz(@RequestBody Quiz quiz) {

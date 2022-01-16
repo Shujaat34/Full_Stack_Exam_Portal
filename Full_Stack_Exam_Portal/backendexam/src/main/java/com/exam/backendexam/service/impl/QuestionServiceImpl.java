@@ -10,7 +10,9 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -67,5 +69,48 @@ public class QuestionServiceImpl implements QuestionService {
     @Override
     public void deleteQuestionById(Long questionId) {
         questionRepository.deleteById(questionId);
+    }
+
+    @Override
+    public Map<String, Object> evaluateQuestionOfQuiz(List<Question> questions) {
+        Map<String, Object> map = new HashMap<>();
+        Double marksGot = 0.0;
+        Integer correctAnswers = 0;
+        Integer attempted = 0;
+        Double perQuestionMarks = 0.0;
+        Boolean passQuiz = false;
+
+        for (Question q : questions) {
+            Question realQuestion = questionRepository.findById(q.getId()).get();
+            if (q.getGivenAnswer() != null) {
+                if (realQuestion.getAnswer().trim().equals(q.getGivenAnswer().trim())) {
+                    correctAnswers++;
+                }
+                if(!q.getGivenAnswer().isEmpty()){
+                    attempted++;
+                }
+            }
+        }
+
+        if (!questions.isEmpty()) {
+            perQuestionMarks = Double.parseDouble(questions.get(0).getQuiz().getMaxMarks()) / questions.size();
+            marksGot = perQuestionMarks * correctAnswers;
+            //Two Digits After Decimal
+            marksGot = Math.floor(marksGot * 100) / 100;
+
+            //user gets 50% marks he is pass
+            if(correctAnswers >= questions.size()/2){
+                passQuiz = true;
+            }
+        }
+
+
+        map.put("marksGot", marksGot);
+        map.put("attempted", attempted);
+        map.put("correctAnswers", correctAnswers);
+        map.put("perQuestionMarks", perQuestionMarks);
+        map.put("passQuiz",passQuiz);
+
+        return map;
     }
 }

@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { tokenize } from '@angular/compiler/src/ml_parser/lexer';
-import { Injectable } from '@angular/core';
+import { HostListener, Injectable } from '@angular/core';
 import { Observable, Subject } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { LoginData } from '../login-data';
@@ -10,6 +10,11 @@ import { User } from '../user';
   providedIn: 'root'
 })
 export class LoginService {
+
+  @HostListener("window:onbeforeunload",["$event"])
+  clearLocalStorage(event : any){
+    this.logout();
+  }
 
   public loginStatus = new Subject<boolean>();
 
@@ -47,6 +52,7 @@ export class LoginService {
     //remove the token
     localStorage.removeItem('token');
     localStorage.removeItem('user');
+    localStorage.clear();
     return true;
   }
 
