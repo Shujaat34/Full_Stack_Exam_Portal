@@ -1,9 +1,11 @@
 package com.exam.backendexam;
 
+import com.exam.backendexam.config.FileStorageProperties;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.core.env.Environment;
 
 import java.net.InetAddress;
@@ -11,6 +13,9 @@ import java.net.UnknownHostException;
 
 @SpringBootApplication
 @Slf4j
+@EnableConfigurationProperties({
+        FileStorageProperties.class
+})
 public class BackendexamApplication {
 
     public static void main(String[] args) {
