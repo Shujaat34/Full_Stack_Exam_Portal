@@ -1,5 +1,6 @@
 import { HttpErrorResponse, HttpResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { Category } from 'src/app/category';
 import { CategoryService } from 'src/app/services/category.service';
 import Swal from 'sweetalert2';
@@ -28,16 +29,19 @@ export class ViewCategoriesComponent implements OnInit {
   //   }
   // ]
 
-  constructor(private categoryService: CategoryService) { }
+  constructor(private categoryService: CategoryService,
+    private snackBar: MatSnackBar) { }
 
   ngOnInit(): void {
     this.categoryService.getCategories().subscribe(
       (response: Category[]) => {
-        Swal.fire('Success !!', "Categories Loaded Successfully", 'success');
         this.categories = response;
       },
       (error: HttpErrorResponse) => {
-        Swal.fire('Error !!', "Error Loading Categories", 'error');
+        this.snackBar.open('Something went wrong in Loading Categories Data '+error.message, '', {
+          duration: 3000,
+        });
+        console.log('Something went wrong in Loading Categories Data '+error.message)
       }
     );
   }

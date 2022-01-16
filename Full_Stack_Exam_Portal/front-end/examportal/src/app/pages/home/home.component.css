@@ -1,0 +1,27 @@
+.mySlides {
+    display:none;
+}
+
+.fit-screen{
+    background-size: cover;
+    /* max-width: 1000px; */
+ }
+
+.screen-center{
+    margin: auto;
+}
+.opacity70{
+    opacity: 0.7;
+}
+
+.centered {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+
+  h1{
+      font-size: 35px;
+      text-align: center;
+  }
