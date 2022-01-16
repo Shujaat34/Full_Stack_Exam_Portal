@@ -1,6 +1,8 @@
 <mat-card class="mt10" *ngFor="let quiz of quizzes">
   <mat-card-header>
-    <div mat-card-avatar class="example-header-image"></div>
+    <div mat-card-avatar>
+      <img [src]="quiz.quizLogo" width="50" height="auto" style="background-image: cover;"/>
+    </div>
     <mat-card-title>{{ quiz.title }} </mat-card-title>
     <mat-card-subtitle>{{ quiz.category.title }}</mat-card-subtitle>
   </mat-card-header>
