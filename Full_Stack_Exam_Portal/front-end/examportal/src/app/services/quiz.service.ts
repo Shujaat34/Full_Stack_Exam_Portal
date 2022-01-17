@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpEvent, HttpRequest } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
@@ -42,4 +42,15 @@ export class QuizService {
   public getActiveQuizzesOfCategory(cateId: number): Observable<Quiz[]> {
     return this.http.get<Quiz[]>(`${this.baseUrl}/quiz/category/active/${cateId}`);
   }
+
+  public upload(file: File): Observable<HttpEvent<any>> {
+    const formData: FormData = new FormData();
+    formData.append('file', file, file.name);
+    const req = new HttpRequest('POST', `${this.baseUrl}/file/uploadFile`, formData, {
+      reportProgress: false,
+      responseType: 'json'
+    });
+    return this.http.request(req);
+  }
+
 }

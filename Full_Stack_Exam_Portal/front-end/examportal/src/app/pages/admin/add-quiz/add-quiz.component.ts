@@ -1,6 +1,7 @@
-import { HttpErrorResponse } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse, HttpEvent, HttpRequest } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { Observable } from 'rxjs';
 import { Category } from 'src/app/category';
 import { Quiz } from 'src/app/quiz';
 import { CategoryService } from 'src/app/services/category.service';
@@ -15,11 +16,13 @@ import Swal from 'sweetalert2';
 export class AddQuizComponent implements OnInit {
   quiz = new Quiz();
   categories: Category[] = [];
+  selectedImage : File = null!;
 
   constructor(
     private categoryService: CategoryService,
     private snackBar: MatSnackBar,
-    private quizService: QuizService
+    private quizService: QuizService,
+    private http :HttpClient
   ) {}
 
   ngOnInit(): void {
@@ -36,23 +39,38 @@ export class AddQuizComponent implements OnInit {
   }
 
   onAddQuiz(): void {
-    if (this.quiz.title == '' || this.quiz.title == null) {
-      Swal.fire('Error !!', 'Title can not be Empty', 'error');
+    // if (this.quiz.title == '' || this.quiz.title == null) {
+    //   Swal.fire('Error !!', 'Title can not be Empty', 'error');
+    //   return;
+    // }
+
+    // if (this.quiz.isActive == null) {
+    //   this.quiz.isActive = false;
+    // }
+    if(!this.selectedImage){
+      Swal.fire('Error !!', 'Please Select An Image from your Device', 'error');
       return;
     }
+    //Assets Directory With Image Extension.
+    this.quiz.quizLogo = './../../../../assets/'+this.selectedImage.name;
 
-    if (this.quiz.isActive == null) {
-      this.quiz.isActive = false;
-    }
     this.quizService.addQuiz(this.quiz).subscribe(
       (resp: Quiz) => {
-        console.log('Quiz Object ' + this.quiz.isActive);
-        Swal.fire('Success', resp.title + ' Added To Quiz List', 'success');
+        //Image Upload Service.
+        this.quizService.upload(this.selectedImage).subscribe(
+          (event: any) => {
+            Swal.fire('Success', resp.title + ' Added To Quiz List', 'success');
+          },
+          (err: any) => {
+            console.log('Got Error '+err.message);
+          }
+        );
         this.quiz.title = '';
         this.quiz.description = '';
         this.quiz.isActive = false;
         this.quiz.maxMarks = '';
         this.quiz.numberOfQuestions = '';
+        this.quiz.quizLogo = '';
       },
       (error: HttpErrorResponse) => {
         console.log(error.message);
@@ -61,5 +79,13 @@ export class AddQuizComponent implements OnInit {
         });
       }
     );
+
+    
   }
+
+  getSelectedFile(event : any){
+    this.selectedImage = event.target.files[0];
+  }
+
+  
 }

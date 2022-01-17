@@ -56,6 +56,14 @@
             </div>
           </div>
 
+          <label class="mr20">
+            <input type="file" (change)="getSelectedFile($event)" style="display:none" multiple/>
+            <a mat-raised-button color="primary">
+              <mat-icon>file_upload</mat-icon>
+              Select Image
+            </a>
+          </label>
+
           <mat-slide-toggle
             [(ngModel)]="quiz.isActive"
             name="active"
@@ -72,6 +80,7 @@
               </mat-option>
             </mat-select>
           </mat-form-field>
+
 
           <div class="container text-center">
             <button type="submit" mat-raised-button color="primary">Add</button>
