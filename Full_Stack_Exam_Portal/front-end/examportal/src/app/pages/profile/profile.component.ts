@@ -12,11 +12,16 @@ export class ProfileComponent implements OnInit {
   user = new User();
   constructor(private loginService: LoginService) { }
 
+  adminFlag = false;
+
   ngOnInit(): void {
     // this.user = this.loginService.getUser();
     this.loginService.getCurrentUser().subscribe(
       (resp: User) => {
         this.user = resp;
+        if(this.user.authorities[0].authority=='ADMIN'){
+          this.adminFlag = true;
+        }
       },
       (error: HttpErrorResponse) => {
         console.log('something went wrong ' + error.message);
