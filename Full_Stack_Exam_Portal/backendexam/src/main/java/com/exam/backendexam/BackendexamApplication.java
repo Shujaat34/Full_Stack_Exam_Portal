@@ -1,15 +1,26 @@
 package com.exam.backendexam;
 
 import com.exam.backendexam.config.FileStorageProperties;
+import com.exam.backendexam.model.Role;
+import com.exam.backendexam.model.User;
+import com.exam.backendexam.model.UserRole;
+import com.exam.backendexam.repository.RoleRepository;
+import com.exam.backendexam.service.UserService;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
+import org.springframework.context.annotation.Bean;
 import org.springframework.core.env.Environment;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import java.net.InetAddress;
 import java.net.UnknownHostException;
+import java.util.HashSet;
+import java.util.Set;
 
 @SpringBootApplication
 @Slf4j
