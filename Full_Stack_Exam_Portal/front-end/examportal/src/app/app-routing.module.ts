@@ -49,8 +49,10 @@ const routes: Routes = [
     component: UserDashboardComponent,
     canActivate: [NormalUserGuard],
     children :[
+      { path: 'profile', component: ProfileComponent },
       { path: ':catId', component: LoadQuizComponent },
       { path: 'instructions/:quizId', component: InstructionsComponent },
+      
     ]
   },
   { path: 'start-quiz/:quizId', component: StartQuizComponent,canActivate: [NormalUserGuard] },

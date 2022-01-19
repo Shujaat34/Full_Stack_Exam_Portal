@@ -15,8 +15,13 @@
     </a>
 
     <a routerLink="/admin-dashboard/profile"
-     *ngIf="userLoggedIn" mat-icon-button class="mr20" aria-label="Example icon-button with heart icon">
+     *ngIf="userLoggedIn && user.authorities[0].authority=='ADMIN'" mat-icon-button class="mr20" aria-label="Example icon-button with heart icon">
         {{user.username}}
+    </a>
+
+    <a routerLink="/user-dashboard/profile"
+    *ngIf="userLoggedIn && user.authorities[0].authority=='NORMAL'" mat-icon-button class="mr20" aria-label="Example icon-button with heart icon">
+       {{user.username}}
     </a>
 
     <a (click)="logout()" *ngIf="userLoggedIn" mat-icon-button class="mr20">
