@@ -15,3 +15,10 @@ To Check the Angular is intalled type ng version
 
 After you open the angular project type npm install to reinstall the packages according
 to your project import in your IDE.
+
+If you are Creating New Project
+
+1. To Install Angular Material Type "ng add @angular/material"
+2. To Install the Bootstrap Grid Type "npm install bootstrap-grid-only-css --save". then Type <link rel="stylesheet" href="dist/css/bootstrap-grid.min.css" />
+in the head section of the index.html File.
+3. To Install SweetAlert for popup Message Type "npm install --save sweetalert2". then to use it "import Swal from 'sweetalert2';" in every ts File. 
