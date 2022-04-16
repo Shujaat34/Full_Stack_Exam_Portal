@@ -19,6 +19,7 @@ to your project import in your IDE.
 If you are Creating New Project
 
 1. To Install Angular Material Type "ng add @angular/material"
-2. To Install the Bootstrap Grid Type "npm install bootstrap-grid-only-css --save". then Type ![](./Images/Link.svg)
+2. To Install the Bootstrap Grid Type "npm install bootstrap-grid-only-css --save". then Type ![](Full_Stack_Exam_Portal/Images/Link.svg)
+
 in the head section of the index.html File.
 3. To Install SweetAlert for popup Message Type "npm install --save sweetalert2". then to use it "import Swal from 'sweetalert2';" in every ts File. 
