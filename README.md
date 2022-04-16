@@ -32,7 +32,7 @@ in the head section of the index.html File.
 #### Admin Dashboard
 ![](Full_Stack_Exam_Portal/Images/AdminDashboard.JPG)
 #### Category
-![](Full_Stack_Exam_Portal/Images/Category.JPG)
+![](Full_Stack_Exam_Portal/Images/Cateogry.JPG)
 #### Quiz
 ![](Full_Stack_Exam_Portal/Images/Quiz.JPG)
 
