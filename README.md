@@ -22,3 +22,28 @@ If you are Creating New Project
 2. To Install the Bootstrap Grid Type "npm install bootstrap-grid-only-css --save". then Type ![](Full_Stack_Exam_Portal/Images/link.JPG)
 in the head section of the index.html File.
 3. To Install SweetAlert for popup Message Type "npm install --save sweetalert2". then to use it "import Swal from 'sweetalert2';" in every ts File. 
+
+
+## Exam Portal Look and Feel
+
+### Admin Perspective
+#### Login Page
+![](Full_Stack_Exam_Portal/Images/Login.JPG)
+#### Admin Dashboard
+![](Full_Stack_Exam_Portal/Images/AdminDashboard.JPG)
+#### Category
+![](Full_Stack_Exam_Portal/Images/Category.JPG)
+#### Quiz
+![](Full_Stack_Exam_Portal/Images/Quiz.JPG)
+
+### User Perspective
+#### Available Quiz Page
+![](Full_Stack_Exam_Portal/Images/Avilable_Quiz.JPG)
+#### Instructions Page
+![](Full_Stack_Exam_Portal/Images/Instructions.JPG)
+#### Quiz Started Page
+![](Full_Stack_Exam_Portal/Images/QuizStart.JPG)
+#### User Details Page
+![](Full_Stack_Exam_Portal/Images/UserDetails.JPG)
+#### Result Page
+![](Full_Stack_Exam_Portal/Images/Result.JPG)
